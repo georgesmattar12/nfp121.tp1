@@ -32,7 +32,7 @@ public class AuditeurCNAM {
         this.matricule = matricule;
     }
 
-    /**
+    /** 
      * le login au Cnam : 6 premières lettres du nom suivies de la première
      * lettre du prénom séparées de '_' . le login retourné est en minuscules,
      * le trait d'union, ou spéciaux <i>(pour unix)</i> sont remplacés par des
@@ -45,7 +45,22 @@ public class AuditeurCNAM {
      *         homonymes...
      */
     public String login() {
-        return "";// à compléter
+        
+String login = "";
+         int len = nom.length();
+        if(len>6){
+            len = 6;
+        }
+        login = nom.substring(0, len).toLowerCase();
+        for(int i=0;i<len;i++){
+                       if (!Character.isDigit(nom.charAt(i))&& !Character.isLetter(nom.charAt(i))) {
+                       login = login.substring(0, i)+"_"+login.substring(i+1);
+        }
+        }
+                    login = login.replaceAll("é","e");
+                    login+="_"+prenom.charAt(0);
+                    
+                   return login; 
     }
 
     /**
@@ -54,7 +69,7 @@ public class AuditeurCNAM {
      * @return son nom
      */
     public String nom() {
-        return null;// à compléter
+        return nom;
     }
 
     /**
@@ -63,7 +78,7 @@ public class AuditeurCNAM {
      * @return son prénom
      */
     public String prenom() {
-        return null;// à compléter
+        return prenom;
     }
 
     /**
@@ -72,7 +87,7 @@ public class AuditeurCNAM {
      * @return son matricule
      */
     public String matricule() {
-        return null;// à compléter
+        return matricule;
     }
 
     /**
